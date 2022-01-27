@@ -7,8 +7,36 @@ public class MyMain {
     // ********************
 
     public static int[] merge(int[] arr1, int[] arr2) {
-        // COPY AND PASTE YOUR CODE HERE
-        return new int[] {1, 2, 3, 4};
+        int j = 0;
+        int i = 0;
+        int k = 0;
+        int [] arr3 = new int[arr1.length*2];
+        while (arr3[arr3.length-1] == 0) {
+            if (j >= arr1.length){
+                for (i = i; i < arr2.length; i ++){
+                    arr3[k] = arr2[i];
+                    k++;
+                }
+            }
+            else if (i >= arr2.length){
+                for (j = j; j < arr1.length; j ++){
+                    arr3[k] = arr1[j];
+                    k++;
+                }
+            }
+            else if (arr1[j] < arr2[i]) {
+                arr3[k] = arr1[j];
+                j++;
+                k++;
+            }
+            else if (arr1[j] > arr2[i]) {
+                arr3[k] = arr2[i];
+                i++;
+                k++;
+            }
+
+        }
+        return arr3;
     }
 
     // **************************
@@ -25,8 +53,14 @@ public class MyMain {
     // subArray([1, 4, 3, 7], 0, 4) => [1, 4, 3, 7]
     // subArray([1, 4, 3, 7], 2, 4) => [3, 7]
     public static int[] subArray(int[] arr, int begin, int end) {
-        // YOUR CODE HERE
-        return null;
+        int [] arr1 = new int [end - begin];
+    for (int i = begin; i < end; i++){
+        arr1[i-begin] = arr[i];
+    }
+//    for (int i = 0; i < arr1.length; i++){
+//        arr[i] = arr[begin + i];
+//    }
+        return arr1;
     }
 
     // Carries out merge sort!
@@ -43,8 +77,16 @@ public class MyMain {
     // Examples:
     // mergeSort([6, 3, 4, 1, 5, 8, 7, 2]) => [1, 2, 3, 4, 5, 6, 7, 8]
     public static int[] mergeSort(int[] arr) {
-        // YOUR CODE HERE
-        return null;
+
+        if ((arr.length == 0) || (arr.length ==1 )) {
+            return arr;
+        }
+        int[] arr1 = subArray(arr, 0, arr.length/2);
+        int[] arr2 = subArray(arr, arr.length/2, arr.length);
+        arr1 = mergeSort(arr1);
+        arr2 = mergeSort(arr2);
+        return merge(arr1,arr2);
+
     }
 
 
