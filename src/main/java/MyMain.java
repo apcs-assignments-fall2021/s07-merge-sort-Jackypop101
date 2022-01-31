@@ -126,11 +126,11 @@ public class MyMain {
             return list;
         }
         else if(i >= list.size()-1){
-            list.add(list.size()-1, x);
+            list.add(list.size(), x);
             return list;
         }
         else{
-            return insertTR(list, x, i++);
+            return insertTR(list, x, i + 1);
         }
     }
 
@@ -158,8 +158,9 @@ public class MyMain {
         else{
             int w = list.get(list.size() -1);
             list.remove(list.size() -1);
-            insert(list,w );
-            return insertionSort(list);
+
+            insertionSort(list);
+            return insert(list,w );
         }
     }
 }
